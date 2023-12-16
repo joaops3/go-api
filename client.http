@@ -1,0 +1,27 @@
+@BaseUrl = http://localhost:3333
+
+
+###
+# @name createMovie
+POST {{BaseUrl}}/book/
+
+Content-Type: application/json
+{
+    
+    "name": "nome",
+    "author": "autor",
+    "publication": "publication"
+   
+}
+
+###
+# @name getBookById
+GET {{BaseUrl}}/book/1
+
+Content-Type: application/json
+
+
+
+
+
+
