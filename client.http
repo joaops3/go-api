@@ -2,26 +2,48 @@
 
 
 ###
-# @name createMovie
-POST {{BaseUrl}}/book/
 
+# @name create
+
+POST {{BaseUrl}}/opening
 Content-Type: application/json
+
 {
     
-    "name": "nome",
-    "author": "autor",
-    "publication": "publication"
-   
+    "role": "n",
+    "company": "autor",
+    "location": "publication",
+    "remote": false,
+    "link": "link",
+    "salary": 200
 }
 
 ###
-# @name getBookById
-GET {{BaseUrl}}/book/1
 
+# @name getById
+GET {{BaseUrl}}/opening/1
+
+###
+# @name getAll
+GET {{BaseUrl}}/opening
+
+###
+
+# @name delete
+DELETE {{BaseUrl}}/opening/1
+
+###
+# @name update
+
+PUT {{BaseUrl}}/opening/2
 Content-Type: application/json
 
-
-
-
-
+{
+    
+   
+    "location": "p",
+    "remote": true,
+    "link": "link2",
+    "salary": 300
+}
 
