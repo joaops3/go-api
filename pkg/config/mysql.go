@@ -21,6 +21,11 @@ func InitializeMYSQL() (*gorm.DB, error) {
 		logger.Errorf("mysql automigration error: %v", err)
 		return nil, err
 	}
+	err = db.AutoMigrate(&schemas.User{})
+	if err != nil {
+		logger.Errorf("mysql automigration error: %v", err)
+		return nil, err
+	}
 	// Return the DB
 	return db, nil
 }

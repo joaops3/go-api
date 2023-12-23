@@ -7,10 +7,10 @@ import (
 
 var (
 	logger *config.Logger
-	db *gorm.DB
+	Db *gorm.DB
 )
 
 func InitController(){
 	logger = config.GetLogger("controller")
-	db = config.GetDb()
+	Db = config.GetDb()
 }

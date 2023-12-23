@@ -39,7 +39,7 @@ func CreatingOpening(ctx *gin.Context){
 		Salary: requestBody.Salary,
 	}
 
-	if err := db.Create(&opening).Error; err != nil {
+	if err := Db.Create(&opening).Error; err != nil {
 		logger.Errorf("Erro creating opening %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, err.Error())
 		return
@@ -56,7 +56,7 @@ func GetOpeningById(ctx *gin.Context){
 		return
 	}	
 	opening := schemas.Opening{}
-	if err := db.Where("id = ?", id).Find(&opening).Error; err != nil {
+	if err := Db.Where("id = ?", id).Find(&opening).Error; err != nil {
 		sendError(ctx, 404, "opening não encontrado" )
 		return 
 	}
@@ -67,7 +67,7 @@ func GetOpeningById(ctx *gin.Context){
 func GetOpeningAll(ctx *gin.Context){
 	openings := []schemas.Opening{}
 
-	if err := db.Find(&openings).Error; err != nil {
+	if err := Db.Find(&openings).Error; err != nil {
 		sendError(ctx, http.StatusInternalServerError,"Erro ao listar" )
 		return
 	}
@@ -90,7 +90,7 @@ func UpdateOpening(ctx *gin.Context){
 
 	Id := ctx.Param("id")
 	
-	if err := db.First(&opening, Id).Error; err != nil {
+	if err := Db.First(&opening, Id).Error; err != nil {
 		sendError(ctx, 404, "opening não encontrado" )
 		return 
 	}
@@ -113,7 +113,7 @@ func UpdateOpening(ctx *gin.Context){
 	if newData.Salary > 0 {
 		opening.Salary = newData.Salary
 	}
-	if err := db.Save(&opening).Error; err != nil {
+	if err := Db.Save(&opening).Error; err != nil {
 		logger.Errorf("erro ao salvar")
 		sendError(ctx, 500, "error ao salvar" )
 		return
@@ -129,11 +129,11 @@ func DeleteOpening(ctx *gin.Context){
 		return
 	}
 	opening := schemas.Opening{}
-	if err := db.First(&opening, id).Error; err != nil{
+	if err := Db.First(&opening, id).Error; err != nil{
 		sendError(ctx, 404, "opening não encontrado" )
 		return
 	}
-	if err := db.Delete(&opening).Error; err != nil {
+	if err := Db.Delete(&opening).Error; err != nil {
 		sendError(ctx, 500, "erro ao deletar com id" )
 		return
 	}

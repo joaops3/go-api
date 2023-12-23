@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
@@ -32,4 +33,13 @@ func GetLogger(p string) *Logger {
 	// Initialize Logger
 	logger = NewLogger(p)
 	return logger
+}
+
+func LoadEnvFile(){
+	err := godotenv.Load()
+	if err != nil {
+	  logger.Error("Error loading .env file")
+	  panic(err.Error())
+	}
+  
 }
